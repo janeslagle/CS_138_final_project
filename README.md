@@ -42,6 +42,7 @@ a simulation environment for bridge infrastrucutre maintenance on one bridge ove
 - do nothing [associated action cost of 0]
 - maintenance [associated action cost of 2]
 - replace [associated action cost of 5]
+  
 The associated cost of each action is taken out of the budget.
 
 **Step Function**:
