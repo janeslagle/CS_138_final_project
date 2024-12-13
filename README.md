@@ -25,6 +25,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 (2) Uncomment the algorithm function you want to see results from in the 'if __name__ == "__main__":' block:
 - 'run_each_algor("SMDP", num_episodes)' for running the InfraPlanner environment with an SMDP algorithm
 - 'run_each_algor("DeepSARSA", num_episodes)' for running the InfraPlanner environment with a Deep SARSA algorithm
+- [have for Diana's algorithm too]
 
 (3) Run 'main.py' to see plotting results and also print statements providing various metrics for each algorithm. The results from each algorithm are clearly labelled if you decide to run all three algorithms at once.
 
