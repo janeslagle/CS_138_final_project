@@ -15,6 +15,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 
 ## Requirements
 - **Python**: 3.11.5
+- **not sure if there are more, will elaborate on this later**
 
 ## To Run and view results
 
@@ -69,6 +70,14 @@ It employs an epsilon-greedy policy for action selection and updates Q values by
 
 **DeepSARSA.py**
 Implements a Deep SARSA agent that uses a neural network to approximate the Q values. It uses an epsilon-greedy approach for action selection and also incorporates weights. This integration of deep learning allows the agent to handle complex decision-making tasks effectively.
+- Related works: 
+    - https://arxiv.org/pdf/1702.03118 
+        - This research uses Deep SARSA (λ) agent with SiLU and dSiLU hidden units.
+    - https://medium.com/swlh/learning-with-deep-sarsa-openai-gym-c9a470d027a 
+        - Implements Deep SARSA using OpenAI Gym’s Cartpole environment and Keras-RL. 
+        - In most episodes, the agent managed to maintain rewards within a range of 140–160 steps. 
+    - https://github.com/JohDonald/Deep-Q-Learning-Deep-SARSA-LunarLander-v2 
+        - This repo discusses implementing and comparing Deep Q-Learning (DQN) and Deep SARSA for solving the LunarLander-v2 environment from OpenAI Gym.
 
 **DQL.py**
 [add description once have it]
@@ -85,4 +94,3 @@ By following the steps outlined in the "To run and view results" section above, 
 - the cost efficiency
 - the final environment state with the percentage of how much the agent either improved or deteroriated the bridge
 - the final budget with the percentage of the total budget used and the percentage of the total budget leftover
-
