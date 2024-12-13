@@ -3,7 +3,7 @@
 
 
 ## StructuRL Bridge Maintenance: Leveraging Reinforcement Learning
-Please note that we took heavy inspiration from https://github.com/CivML-PolyMtl/InfrastructuresPlanner for this project.
+Please note that we took inspiration from https://github.com/CivML-PolyMtl/InfrastructuresPlanner for this project.
 
 We aim to explore how three different reinforcement learning algorithms can be applied to bridge infrastructure maintenace. We create a custom environmemt, an extremely simplified form inspired from the environment provided by https://github.com/CivML-PolyMtl/InfrastructuresPlanner, InfraPlanner, to represent a bridge and simulate how three different reinforcement learning algorithms perform on maintatining the conditions of the bridge:
 
