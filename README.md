@@ -91,9 +91,21 @@ Q-learning based SMDP algorithm representing an agent that is able to interact w
 It employs an epsilon-greedy policy for action selection and updates Q values by scaling them by the variable action durations since it is SMDP. It handles all training for running through the environment with an SMDP algrorithm.
 
 **DeepSARSA.py**
-[add brief description]
+Implements a Deep SARSA agent that uses a neural network to approximate the Q values. It uses an epsilon-greedy approach for action selection and also incorporates weights. This integration of deep learning allows the agent to handle complex decision-making tasks effectively.
 
 **[deep learning file]**
 [add description once have it]
 
 **main.py**
+By following the steps outlined in the "To run and view results" section above, we can run 'main.py' to obtain results for each of our three algorithms. For each algorithm the following results are obtained:
+
+- a plot showing the culmulative rewards over all episodes
+- a plot showing the average reward per episode for all episodes (both the original and smoothed version)
+- the initial state condition of the bridge
+- the initial budget of the bridge
+- the average culmulative reward
+- the percentage of times each action out of the three possible actions was taken out of the total number of actions taken
+- the cost efficiency
+- the final environment state with the percentage of how much the agent either improved or deteroriated the bridge
+- the final budget with the percentage of the total budget used and the percentage of the total budget leftover
+
