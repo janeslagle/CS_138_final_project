@@ -88,11 +88,12 @@ We consider the following factors when calculating reward:
     
 **SMDP.py**:
 Q-learning based SMDP algorithm representing an agent that is able to interact with the InfraPlanner environment.
-[add little more detail, just in general]
+It employs an epsilon-greedy policy for action selection and updates Q values by scaling them by the variable action durations since it is SMDP. It handles all training for running through the environment with an SMDP algrorithm.
 
 **DeepSARSA.py**
 [add brief description]
 
 **[deep learning file]**
+[add description once have it]
 
 **main.py**
