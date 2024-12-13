@@ -122,7 +122,7 @@ def run_each_algor(which_algorithm="SMDP", num_episodes=1000):
 if __name__ == '__main__':
     num_episodes = 1000   #want run all algor w/ the same number of episodes = 100000
     
-    #run_each_algor("SMDP", num_episodes)
+    run_each_algor("SMDP", num_episodes)
 
     print("")
     print("")
