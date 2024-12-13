@@ -24,8 +24,8 @@ class DeepSARSA:
        self.state_size = env.state_size
        self.action_size = len(env.actions)
 
-       # We will use a simple 2 layer neural network and will initialize weights and biases for it 
-       # Input values for the first hidden layer 
+       #We will use a simple 2 layer neural network and will initialize weights and biases for it 
+       #Input values for the first hidden layer 
        self.weights1 = np.random.randn(self.state_size, hidden_size) * 0.01
        self.bias1 = np.zeros(hidden_size)
        # Input values from the first hidden layer to the 2nd hidden layer 
@@ -42,7 +42,7 @@ class DeepSARSA:
        Compute q-values by forward passing through the network. This will help predict the action-value function Q(s,a) for given state s 
        """
        z1 = np.dot(state, self.weights1) + self.bias1
-       # This is the ReLU activation. Adds non-linear activation for neural networks, so the agent can learn non-linear actions/decision 
+       #This is the ReLU activation. Adds non-linear activation for neural networks, so the agent can learn non-linear actions/decision 
        # f(x) = max(0,x)
        a1 = np.maximum(0, z1)   
        z2 = np.dot(a1, self.weights2) + self.bias2
@@ -58,27 +58,27 @@ class DeepSARSA:
 
        """
        state, z1, a1, z2, a2 = cache
-       # Gradients of q-values 
+       #Gradients of q-values 
        q_grad = np.zeros_like(self.bias3)
        q_grad[action] = td_error
 
        grad_w3 = np.outer(a2, q_grad)
        grad_b3 = q_grad
 
-       # Backpropagate through the 2nd hidden layer (z2, a2)
-       # delta2 is the gradient of the loss bc of z2 
+       #Backpropagate through the 2nd hidden layer (z2, a2)
+       #delta2 is the gradient of the loss bc of z2 
        delta2 = np.dot(q_grad, self.weights3.T)
        delta2[z2 <= 0] = 0   
        grad_w2 = np.outer(a1, delta2)
        grad_b2 = delta2
 
-       # Backpropagate through the 1st hidden layer
+       #Backpropagate through the 1st hidden layer
        delta1 = np.dot(delta2, self.weights2.T)
        delta1[z1 <= 0] = 0   
        grad_w1 = np.outer(state, delta1)
        grad_b1 = delta1
 
-       # Weights and biases updates with learning rate 
+       #Weights and biases updates with learning rate 
        self.weights3 += self.alpha * grad_w3
        self.bias3 += self.alpha * grad_b3
        self.weights2 += self.alpha * grad_w2
@@ -93,12 +93,12 @@ class DeepSARSA:
    
        """
        if np.random.rand() < self.epsilon:
-           # This is the exploration stage 
+           #This is the exploration stage 
            action = np.random.choice(self.action_size)
        else:
-           # This is the exploitation stage, using the neural network to predict q-values 
+           #This is the exploitation stage, using the neural network to predict q-values 
            q_values, _ = self.forward(state)
-           # Get the action with the highest q-values 
+           #Get the action with the highest q-values 
            action = np.argmax(q_values)
        self.all_acts_taken.append(self.env.actions[action])   
        return action
@@ -118,13 +118,13 @@ class DeepSARSA:
                next_state, reward, done = self.env.step(self.env.actions[action], action_duration=1)
                next_action = self.choose_action(next_state)
 
-               # ADJUSTMENTS for trial n error...to improve learning stability. Modify if needed 
-               # Think about keeping this or not since we have rewards in the infra env...
+               #ADJUSTMENTS for trial n error...to improve learning stability. Modify if needed 
+               #Think about keeping this or not since we have rewards in the infra env...
                reward = max(-10, min(10, reward))   
                reward += 1  
 
-               # Calculate TD error, which is the difference between the current Q-value and the updated Q-value based on the reward and future estimate
-               # TD error = TD Target - Q(s, a) 
+               #Calculate TD error, which is the difference between the current Q-value and the updated Q-value based on the reward and future estimate
+               #TD error = TD Target - Q(s, a) 
                q_values, cache = self.forward(state)
                next_q_values, _ = self.forward(next_state)
                td_target = reward + self.gamma * next_q_values[next_action] * (1 - done)
