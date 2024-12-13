@@ -15,7 +15,6 @@ We aim to explore how three different reinforcement learning algorithms can be a
 
 ## Requirements
 - **Python**: 3.11.5
-- **not sure if there are more, will elaborate on this later**
 
 ## To Run and view results
 
