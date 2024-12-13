@@ -132,6 +132,7 @@ if __name__ == '__main__':
     print("")
     print("")
 
-    # call to Diana's agent here
+    # call to Diana's agent here, something like:
+    #run_each_algor("DQL", num_epsiodes)
 
     pass
