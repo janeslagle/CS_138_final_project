@@ -86,7 +86,7 @@ class InfraPlanner:
         #use prev_condition input to add additional reward if the condt is improving!
         prev_mean_condt = np.mean(prev_condition)
         if mean_condt > prev_mean_condt:
-            reward += 1    #reward for making progress
+            reward += 3    #reward for making progress
 
         #checks if agent overspent budget: if did then penalize it. otherwise reward it for having good budget management skills!
         if self.budget < 0:
