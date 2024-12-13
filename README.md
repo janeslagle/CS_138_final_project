@@ -67,7 +67,18 @@ Action Space:
 - replace [associated action cost of 5]
 The associated cost of each action is taken out of the budget.
 
-[briefly describe step + reward function too to finish this section out]
+Step Function:
+If running the SMDP algorithm, we employ variable time step lengths for each action. For non-SMDP algorithms, each action takes one time step as per usual.
+The budget is directly tied to each time step. If the agent uses up all of their budget, then a pretty big penalty is applied to the reward, represented as -10.
+When there is sufficient budget to take actions, we deduct the cost to take that action from the total budget. Depending on the action taken, the condition of the bridge will either improve or worsen.
+
+- 'do nothing' action: the state (condition) of the bridge worsens by 1% for the time step to simulate how in the real-world neglecting to maintain the bridge will lead to the state of the bridge getting worse over time 
+- 'mainteance' action: the state improves by 1% for the time step to simulate how in the real-world, if you reguarly maintain the bridge, it's condition will improve
+- 'replace' action: if you replace the bridge entirely then it will reset the bridge to have a perfect condition state
+
+Reward Function:
+
+he prev_condition variable holds the state of the bridge(s) before applying the action, used later for reward calculation.
     
 **SMDP.py**:
 Q-learning based SMDP algorithm representing an agent that is able to interact with the InfraPlanner environment.
