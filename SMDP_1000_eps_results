@@ -31,3 +31,35 @@ Bridge Condition improved by 48.33%
 Final budget: 69
 Percentage of total budget spent: 31.0%
 Percentage of total budget leftover: 69.0%
+
+SMDP results:
+
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 342.46
+Percentage of times took each action out of 33773 total times:
+Action do nothing 93.21% (31481 times)
+Action maintenance 3.44% (1161 times)
+Action replace 3.35% (1131 times)
+Total Cost Efficiency: 8.56
+Final environment state: 68
+Bridge Condition improved by 46.67%
+Final budget: 60
+Percentage of total budget spent: 40.0%
+Percentage of total budget leftover: 60.0%
+
+SMDP results:
+
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 336.5
+Percentage of times took each action out of 33744 total times:
+Action do nothing 93.16% (31435 times)
+Action maintenance 3.34% (1127 times)
+Action replace 3.5% (1182 times)
+Total Cost Efficiency: 11.6
+Final environment state: 50
+Bridge Condition improved by 16.67%
+Final budget: 71
+Percentage of total budget spent: 28.999999999999996%
+Percentage of total budget leftover: 71.0%
