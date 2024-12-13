@@ -1,0 +1,17 @@
+Results from running SMDP with 1,000 episodes:
+
+SMDP results:
+
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 331.13
+Percentage of times took each action out of 33809 total times:
+Action do nothing 93.34% (31559 times)
+Action maintenance 3.19% (1080 times)
+Action replace 3.46% (1170 times)
+Total Cost Efficiency: 11.04
+Final environment state: 94
+Bridge Condition improved by 90.0%
+Final budget: 70
+Percentage of total budget spent: 30.0%
+Percentage of total budget leftover: 70.0%
