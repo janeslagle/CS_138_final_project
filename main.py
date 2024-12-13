@@ -123,7 +123,7 @@ def run_each_algor(which_algorithm="SMDP", num_episodes=1000):
     print("Percentage of total budget leftover: " + str(budget_left) + "%")
 
 if __name__ == '__main__':
-    num_episodes = 1000   #want run all algor w/ the same number of episodes = 100000
+    num_episodes = 10000   #want run all algor w/ the same number of episodes = 100000
     
     run_each_algor("SMDP", num_episodes)
 
