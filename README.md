@@ -82,7 +82,7 @@ We consider the following factors when calculating reward:
 
 - the current condition of the bridge. We set a threshold that a condition of 80 or above is a bridge in "good" condition. If the bridge is in such a condition, then we positively reward it with +10. We set a threshold that a condition of 20 or below represents a bridge in "poor" condition. If the bridge is in such a condition, we penalize the reward with -10.
 
-- we consider the previous condition compared with the current condition of the bridge to see if it is improving over time. If it is, then we positively reward with +1
+- we consider the previous condition compared with the current condition of the bridge to see if it is improving over time. If it is, then we positively reward with +3
 
 - we consider the budget. If the agent surpasses the budget, then we penalize it with -5. If the agent is staying within the bounds of the budget, then we positively reward it with +2
     
