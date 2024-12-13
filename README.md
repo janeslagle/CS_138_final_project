@@ -67,7 +67,7 @@ We consider the following factors when calculating reward:
 Q-learning based SMDP algorithm representing an agent that is able to interact with the InfraPlanner environment.
 It employs an epsilon-greedy policy for action selection and updates Q values by scaling them by the variable action durations since it is SMDP. It handles all training for running through the environment with an SMDP algrorithm.
 
-**DeepSARSA.py**
+**DeepSARSA.py**:
 Implements a Deep SARSA agent that uses a neural network to approximate the Q values. It uses an epsilon-greedy approach for action selection and also incorporates weights. This integration of deep learning allows the agent to handle complex decision-making tasks effectively.
 - Related works: 
     - https://arxiv.org/pdf/1702.03118 
@@ -78,7 +78,7 @@ Implements a Deep SARSA agent that uses a neural network to approximate the Q va
     - https://github.com/JohDonald/Deep-Q-Learning-Deep-SARSA-LunarLander-v2 
         - This repo discusses implementing and comparing Deep Q-Learning (DQN) and Deep SARSA for solving the LunarLander-v2 environment from OpenAI Gym.
 
-**DeepQLearning.py**
+**DeepQLearning.py**:
 We use a basic Deep Q-Learning Algorithm (DQL) which is based on a simple neural network to help us make strong predictions on best actions to take in each situation. The algorithm uses a straightforward method to update its decisions over time, learning from the rewards it gets for each of the different actions. It also tries a mix of exploring new actions and sticking to what it already knows that works well(using an epsilon-greedy approach). This version helps us keep things simple, but focuses more on the basics to help the agent learn in an effective way in the InfraPlanner environment.
 
 **main.py**
