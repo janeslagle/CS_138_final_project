@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from InfraPlanner import InfraPlanner
 from SMDP import SMDP
 from DeepSARSA import DeepSARSA
+from DeepQLearning import DeepQLearning
 
 def plot_rewards(rewards, which_algorithm):
     #get a moving average (rolling mean) of the rewards to smooth the rewards over episodes curve
@@ -86,6 +87,8 @@ def run_each_algor(which_algorithm="SMDP", num_episodes=1000):
         agent = SMDP(env)
     elif which_algorithm == "DeepSARSA":
         agent = DeepSARSA(env, gamma=0.99, alpha=0.1, epsilon=0.1)
+    elif which_algorithm == "DeepQLearning":
+        agent = DeepQLearning(env)
 
     #train agent on all episodes
     rewards = agent.train(num_episodes=num_episodes)
@@ -132,7 +135,6 @@ if __name__ == '__main__':
     print("")
     print("")
 
-    # call to Diana's agent here, something like:
-    #run_each_algor("DQL", num_epsiodes)
+    run_each_algor("DeepQLearning", num_episodes)
 
     pass
