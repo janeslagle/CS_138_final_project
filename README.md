@@ -3,7 +3,10 @@
 
 
 ## StructuRL Bridge Maintenance: Leveraging Reinforcement Learning
-[put one sentence description of our model here]
+We aim to explore how three different reinforcement learning algorithms can be applied to bridge infrastructure maintenace. We create en environmemt, InfraPlanner, to represent a bridge and simulate how three different reinforcement learning algorithms perform on maintatining the conditions of the bridge:
+(1) Q-learning SMDP
+(2) Deep SARSA
+(3) [put what Diana's doing here]
 
 ## Requirements
 - **Python**: 3.11.5
