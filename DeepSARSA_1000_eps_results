@@ -1,4 +1,4 @@
-Resulst from running the Deep SARSA algorithm with 1,000 episodes:
+Resulst from running the Deep SARSA algorithm with 1,000 episodes a couple times:
 
 DeepSARSA results:
 
@@ -15,3 +15,20 @@ Bridge Condition improved by 28.33%
 Final budget: 0
 Percentage of total budget spent: 100.0%
 Percentage of total budget leftover: 0.0%
+
+
+DeepSARSA results:
+
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 240.71
+Percentage of times took each action out of 101000 total times:
+Action do nothing 77.47% (78243 times)
+Action maintenance 13.11% (13244 times)
+Action replace 9.42% (9513 times)
+Total Cost Efficiency: 48.14
+Final environment state: 47
+Bridge Condition improved by 11.67%
+Final budget: 95
+Percentage of total budget spent: 5.0%
+Percentage of total budget leftover: 95.0%
