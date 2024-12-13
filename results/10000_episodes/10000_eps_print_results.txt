@@ -1,0 +1,48 @@
+Algorithm results at 10,000 episodes:
+
+SMDP results:
+Initial environment state (bridge condition): 40
+Initial budget: 100 
+Average Cumulative Reward: 338.45
+Percentage of times took each action out of 337707 total times:
+Action do nothing 93.33% (315194 times)
+Action maintenance 3.28% (11087 times)
+Action replace 3.38% (11426 times)
+Total Cost Efficiency: 8.06
+Final environment state: 93
+Bridge Condition improved by 88.33%
+Final budget: 58
+Percentage of total budget spent: 42.0%
+Percentage of total budget leftover: 58.0%
+
+
+DeepSARSA results:
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 262.91
+Percentage of times took each action out of 1010000 total times:
+Action do nothing 76.68% (774486 times)
+Action maintenance 12.25% (123703 times)
+Action replace 11.07% (111811 times)
+Total Cost Efficiency: 7.51
+Final environment state: 100
+Bridge Condition improved by 100.0%
+Final budget: 65
+Percentage of total budget spent: 35.0%
+Percentage of total budget leftover: 65.0%
+
+
+DeepQLearning results:
+Initial environment state (bridge condition): 40
+Initial budget: 100
+Average Cumulative Reward: 708.47
+Percentage of times took each action out of 1000000 total times:
+Action do nothing 92.85% (928484 times)
+Action maintenance 3.67% (36654 times)
+Action replace 3.49% (34862 times)
+Total Cost Efficiency: 19.15
+Final environment state: 95
+Bridge Condition improved by 91.67%
+Final budget: 63
+Percentage of total budget spent: 37.0%
+Percentage of total budget leftover: 63.0%
