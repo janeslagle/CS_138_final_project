@@ -7,11 +7,11 @@ Please note that we took inspiration from https://github.com/CivML-PolyMtl/Infra
 
 We aim to explore how three different reinforcement learning algorithms can be applied to bridge infrastructure maintenace. We create a custom environmemt, an extremely simplified form inspired from the environment provided by https://github.com/CivML-PolyMtl/InfrastructuresPlanner, InfraPlanner, to represent a bridge and simulate how three different reinforcement learning algorithms perform on maintatining the conditions of the bridge:
 
-(1) Q-learning SMDP
+(1) Q-learning SMDP (Semi Markov Decision Process)
 
 (2) Deep SARSA
 
-(3) [put what Diana's doing here]
+(3) DQL (Deep Q-Learning)
 
 ## Requirements
 - **Python**: 3.11.5
@@ -25,7 +25,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 (2) Uncomment the algorithm function you want to see results from in the 'if __name__ == "__main__":' block:
 - 'run_each_algor("SMDP", num_episodes)' for running the InfraPlanner environment with an SMDP algorithm
 - 'run_each_algor("DeepSARSA", num_episodes)' for running the InfraPlanner environment with a Deep SARSA algorithm
-- [have for Diana's algorithm too]
+- 'run_each_algor("DQL", num_episodes)' for running the InfraPlanner environment with a Deep Q-Learning algorithm
 
 (3) Run 'main.py' to see plotting results and also print statements providing various metrics for each algorithm. The results from each algorithm are clearly labelled if you decide to run all three algorithms at once.
 
@@ -71,7 +71,7 @@ It employs an epsilon-greedy policy for action selection and updates Q values by
 **DeepSARSA.py**
 Implements a Deep SARSA agent that uses a neural network to approximate the Q values. It uses an epsilon-greedy approach for action selection and also incorporates weights. This integration of deep learning allows the agent to handle complex decision-making tasks effectively.
 
-**[deep learning file]**
+**DQL.py**
 [add description once have it]
 
 **main.py**
