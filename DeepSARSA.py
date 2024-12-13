@@ -28,10 +28,10 @@ class DeepSARSA:
        #Input values for the first hidden layer 
        self.weights1 = np.random.randn(self.state_size, hidden_size) * 0.01
        self.bias1 = np.zeros(hidden_size)
-       # Input values from the first hidden layer to the 2nd hidden layer 
+       #Input values from the first hidden layer to the 2nd hidden layer 
        self.weights2 = np.random.randn(hidden_size, hidden_size) * 0.01
        self.bias2 = np.zeros(hidden_size)
-       # Input values from the first hidden layer to the 2nd hidden layer to the output layer (Q-values)
+       #Input values from the first hidden layer to the 2nd hidden layer to the output layer (Q-values)
        self.weights3 = np.random.randn(hidden_size, self.action_size) * 0.01
        self.bias3 = np.zeros(self.action_size)
 
