@@ -56,18 +56,18 @@ source .venv/bin/activate
 **InfraPlanner.py**:
 a simulation environment for bridge infrastrucutre maintenance on one bridge over a 100 year period. Budget constraints are incoporated with each action having a fixed associated cost. When determining the reward, how well the bridge is improving over time is also considered.
 
- State Space:
+ **State Space**:
  - condition of the bridge represented as an integer value, ranging between 0 and 100 where 100 is a perfect condition and 0 is the worst possible condition
  - the condition of the bridge is always initialized as 40 so that we may observe how our model either improves or worsens the condition based on the actions it chooses to take
 
-Action Space: 
+**Action Space**: 
 3 possible actions related to bridge infrastructure mainteance tasks:
 - do nothing [associated action cost of 0]
 - maintenance [associated action cost of 2]
 - replace [associated action cost of 5]
 The associated cost of each action is taken out of the budget.
 
-Step Function:
+**Step Function**:
 If running the SMDP algorithm, we employ variable time step lengths for each action. For non-SMDP algorithms, each action takes one time step as per usual.
 The budget is directly tied to each time step. If the agent uses up all of their budget, then a pretty big penalty is applied to the reward, represented as -10.
 When there is sufficient budget to take actions, we deduct the cost to take that action from the total budget. Depending on the action taken, the condition of the bridge will either improve or worsen.
@@ -76,9 +76,15 @@ When there is sufficient budget to take actions, we deduct the cost to take that
 - 'mainteance' action: the state improves by 1% for the time step to simulate how in the real-world, if you reguarly maintain the bridge, it's condition will improve
 - 'replace' action: if you replace the bridge entirely then it will reset the bridge to have a perfect condition state
 
-Reward Function:
+**Reward Function**:
+We calculate reward based on if the bridge is improving from previous conditions and also based on how well the agent is maintaining the available budget.
+We consider the following factors when calculating reward:
 
-he prev_condition variable holds the state of the bridge(s) before applying the action, used later for reward calculation.
+- the current condition of the bridge. We set a threshold that a condition of 80 or above is a bridge in "good" condition. If the bridge is in such a condition, then we positively reward it with +10. We set a threshold that a condition of 20 or below represents a bridge in "poor" condition. If the bridge is in such a condition, we penalize the reward with -10.
+
+- we consider the previous condition compared with the current condition of the bridge to see if it is improving over time. If it is, then we positively reward with +1
+
+- we consider the budget. If the agent surpasses the budget, then we penalize it with -5. If the agent is staying within the bounds of the budget, then we positively reward it with +2
     
 **SMDP.py**:
 Q-learning based SMDP algorithm representing an agent that is able to interact with the InfraPlanner environment.
