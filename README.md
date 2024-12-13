@@ -11,7 +11,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 
 (2) Deep SARSA
 
-(3) DQL (Deep Q-Learning)
+(3) Deep Q-Learning
 
 ## Requirements
 - **Python**: 3.11.5
@@ -24,7 +24,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 (2) Uncomment the algorithm function you want to see results from in the 'if __name__ == "__main__":' block:
 - 'run_each_algor("SMDP", num_episodes)' for running the InfraPlanner environment with an SMDP algorithm
 - 'run_each_algor("DeepSARSA", num_episodes)' for running the InfraPlanner environment with a Deep SARSA algorithm
-- 'run_each_algor("DQL", num_episodes)' for running the InfraPlanner environment with a Deep Q-Learning algorithm
+- 'run_each_algor("DeepQLearning", num_episodes)' for running the InfraPlanner environment with a Deep Q-Learning algorithm
 
 (3) Run 'main.py' to see plotting results and also print statements providing various metrics for each algorithm. The results from each algorithm are clearly labelled if you decide to run all three algorithms at once.
 
@@ -78,7 +78,7 @@ Implements a Deep SARSA agent that uses a neural network to approximate the Q va
     - https://github.com/JohDonald/Deep-Q-Learning-Deep-SARSA-LunarLander-v2 
         - This repo discusses implementing and comparing Deep Q-Learning (DQN) and Deep SARSA for solving the LunarLander-v2 environment from OpenAI Gym.
 
-**DQL.py**
+**DeepQLearning.py**
 [add description once have it]
 
 **main.py**
