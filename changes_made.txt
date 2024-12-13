@@ -6,7 +6,7 @@ SMDP + DeepSARSA:
 I only made changes to naming here, I didn't change anything with the code logic. I did this so that I could control running each algorithm from 
 one function only in main.py! 
 (1) I actually only changed the name of one parameter, I changed action_history to be called all_acts_taken instead. I just didn't like the name 
-action_history for it.m
+action_history for it
 
 main:
 Okay I made it easier to read from what I changed last night because that was totally whack and way too complicated, and I made it more based on the OG
