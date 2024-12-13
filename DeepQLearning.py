@@ -1,91 +1,141 @@
 # Team Maintenance Agents - Punna Chowdhurry, Jane Slagle, and Diana Krmzian
 # Tufts CS 138 - Final Project
-# SMDP.py
+# DeepSARSA.py
 
 import numpy as np
-import random
 
-class SMDP:
-    """
-    Implements a Q-learning based SMDP agent that can be paried with the InfraPlanner environment.
-    SMDP algorithms are distinct in that they allow for actions with variable time step lengths. We 
-    implement this by maintaining and updating Q values scaled by the time duration for each action.
-    """
-    def __init__(self, env, gamma = 0.9, alpha = 0.1, epsilon = 0.1):
-        self.env = env
-        self.num_acts = len(env.actions)
-        self.q_vals = np.zeros(self.num_acts)
-        self.all_acts_taken = []
-        self.gamma = gamma
-        self.alpha = alpha
-        self.epsilon = epsilon
+class DeepSARSA:
+   """ 
+   SARSA ("State-Action-Reward-State-Action:) is an on-policy RL algorithm that updates the action-value 
+   function based on the action taken by the current policy.
 
-    def choose_act(self):
-        """
-        choose action for inputted state using eps-greedy policy approach
-        """
-        #explore w/ prob eps = means take rand act
-        if np.random.uniform() < self.epsilon:
-            #get the corresp action out of our list of actions from the env
-            action = self.env.actions[self.choose_rand_act()]
-        else:
-            action = self.env.actions[self.choose_best_act()]
-        
-        #now that have taken this action, need to keep track that we took it for our results by adding it to our all_acts_taken list!!
-        self.all_acts_taken.append(action)
+   DEEP SARSA integrates deep learning techniques to approximate the action-value function (Q-function). 
+   Instead of using a simple table to store Q-values, Deep SARSA uses a neural network to handle complex and 
+   continuous state spaces, making it suitable for tasks with large 
+   or infinite state-action spaces.
+   """
+   def __init__(self, env, gamma=0.99, alpha=0.01, epsilon=0.1, epsilon_decay=0.995, min_epsilon=0.01, hidden_size=128):
+       self.env = env
+       self.gamma = gamma
+       self.alpha = alpha
+       self.epsilon = epsilon
+       self.epsilon_decay = epsilon_decay
+       self.min_epsilon = min_epsilon
+       self.state_size = env.state_size
+       self.action_size = len(env.actions)
 
-        return action
+       #We will use a simple 2 layer neural network and will initialize weights and biases for it 
+       #Input values for the first hidden layer 
+       self.weights1 = np.random.randn(self.state_size, hidden_size) * 0.01
+       self.bias1 = np.zeros(hidden_size)
+       # Input values from the first hidden layer to the 2nd hidden layer 
+       self.weights2 = np.random.randn(hidden_size, hidden_size) * 0.01
+       self.bias2 = np.zeros(hidden_size)
+       # Input values from the first hidden layer to the 2nd hidden layer to the output layer (Q-values)
+       self.weights3 = np.random.randn(hidden_size, self.action_size) * 0.01
+       self.bias3 = np.zeros(self.action_size)
 
-    def choose_rand_act(self):
-        """
-        helper func for choose_act, randomly selects an act (explores) in eps-greedy act selection approach
-        """
-        return random.choice(range(self.num_acts))  
-        
-    def choose_best_act(self):
-        """
-        helper func for choose_act, selects act w/ highest est value (exploits)
-        """
-        return np.argmax(self.q_vals)
+       self.all_acts_taken = [] 
 
-    def calc_q_val(self, action, reward, action_duration):
-        """
-        calculates the q value for the inputted action based on the normal updated Q(s,a) func where 
-        Q(s,a) += alpha * [reward at current action + gamma * q value for action that gives max t that state - current act q value]
-        and we also incorporate how action_duration should impact it
-        """
-        #calc based off equation specified in docstrings above
-        act = self.env.actions.index(action)  #get out which specific act from all poss acts are taking here so that can udpate the q val for it
+   def forward(self, state):
+       """
+       Compute q-values by forward passing through the network. This will help predict the action-value function Q(s,a) for given state s 
+       """
+       z1 = np.dot(state, self.weights1) + self.bias1
+       #This is the ReLU activation. Adds non-linear activation for neural networks, so the agent can learn non-linear actions/decision 
+       # f(x) = max(0,x)
+       a1 = np.maximum(0, z1)   
+       z2 = np.dot(a1, self.weights2) + self.bias2
+       # This is the ReLU activation
+       # f(x) = max(0,x)
+       a2 = np.maximum(0, z2)   
+       q_values = np.dot(a2, self.weights3) + self.bias3
+       return q_values, (state, z1, a1, z2, a2)
 
-        #need scale the discount factor by action_duration since time spent on action will impact the q val to accurately depict how much time spent
-        #on action should discount its q val
-        self.q_vals[act] += self.alpha * (reward + (self.gamma ** action_duration) * (np.max(self.q_vals) - self.q_vals[act]))
+   def backward(self, cache, td_error, action):
+       """
+       Backward pass to update the neural network weights and biases based on td error
 
-    def train(self, num_episodes=500):
-        """
-        imulates running the SMDP algor with the env
-        """
-        rewards = []   #keep track of total reward so that can use it for results
+       """
+       state, z1, a1, z2, a2 = cache
+       #Gradients of q-values 
+       q_grad = np.zeros_like(self.bias3)
+       q_grad[action] = td_error
 
-        for eps in range(num_episodes):
-            self.env.reset()              #reset env at start of each episode
-            total_reward = 0     
-            done = False
+       grad_w3 = np.outer(a2, q_grad)
+       grad_b3 = q_grad
 
-            while not done:
-                act = self.choose_act()   #simulate taking act
+       #Backpropagate through the 2nd hidden layer (z2, a2)
+       #delta2 is the gradient of the loss bc of z2 
+       delta2 = np.dot(q_grad, self.weights3.T)
+       delta2[z2 <= 0] = 0   
+       grad_w2 = np.outer(a1, delta2)
+       grad_b2 = delta2
 
-                #need specify the action duration window to use in env step func
-                #choose a random num btw 1,5 years to simulate real world randomness
-                if self.env.which_algorithm == "SMDP":
-                    action_duration = np.random.randint(1, 6)
-                else:
-                    action_duration = 1
+       #Backpropagate through the 1st hidden layer
+       delta1 = np.dot(delta2, self.weights2.T)
+       delta1[z1 <= 0] = 0   
+       grad_w1 = np.outer(state, delta1)
+       grad_b1 = delta1
 
-                next_state, reward, done = self.env.step(act, action_duration)  #simulate taking step in env w/ action that has action duration just found
-                self.calc_q_val(act, reward, action_duration)                   #simulate updating the q val for taking that action
-                total_reward += reward 
+       #Weights and biases updates with learning rate 
+       self.weights3 += self.alpha * grad_w3
+       self.bias3 += self.alpha * grad_b3
+       self.weights2 += self.alpha * grad_w2
+       self.bias2 += self.alpha * grad_b2
+       self.weights1 += self.alpha * grad_w1
+       self.bias1 += self.alpha * grad_b1
 
-            rewards.append(total_reward)
+   def choose_action(self, state):
+       """
+       Epsilon-greedy policy will be applied to help the agent choose an action
+       balances both exploitation and exploration 
+   
+       """
+       if np.random.rand() < self.epsilon:
+           #This is the exploration stage 
+           action = np.random.choice(self.action_size)
+       else:
+           #This is the exploitation stage, using the neural network to predict q-values 
+           q_values, _ = self.forward(state)
+           #Get the action with the highest q-values 
+           action = np.argmax(q_values)
+       self.all_acts_taken.append(self.env.actions[action])   
+       return action
 
-        return rewards 
+   def train(self, num_episodes=500):
+       """
+       Now the agent will be trained using all the components of Deep SARSA 
+       """
+       rewards = []
+       for ep in range(num_episodes):
+           state = self.env.reset()
+           total_reward = 0
+           done = False
+           action = self.choose_action(state)
+
+           while not done:
+               next_state, reward, done = self.env.step(self.env.actions[action], action_duration=1)
+               next_action = self.choose_action(next_state)
+
+               #ADJUSTMENTS for trial n error...to improve learning stability. Modify if needed 
+               #Think about keeping this or not since we have rewards in the infra env...
+               reward = max(-10, min(10, reward))   
+               reward += 1  
+
+               #Calculate TD error, which is the difference between the current Q-value and the updated Q-value based on the reward and future estimate
+               #TD error = TD Target - Q(s, a) 
+               q_values, cache = self.forward(state)
+               next_q_values, _ = self.forward(next_state)
+               td_target = reward + self.gamma * next_q_values[next_action] * (1 - done)
+               td_error = td_target - q_values[action]
+
+               self.backward(cache, td_error, action)
+
+               state, action = next_state, next_action
+               total_reward += reward
+
+           rewards.append(total_reward)
+           self.epsilon = max(self.min_epsilon, self.epsilon * self.epsilon_decay)
+
+       return rewards
