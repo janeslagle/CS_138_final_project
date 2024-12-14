@@ -2,7 +2,6 @@
 ## Punna Chowdhurry, Jane Slagle, and Diana Krmzian
 ## Tufts CS 138 - Final Project
 
-
 ## Overview
 
 Please note that we took inspiration from https://github.com/CivML-PolyMtl/InfrastructuresPlanner for this project.
