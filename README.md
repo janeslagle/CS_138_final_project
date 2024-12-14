@@ -1,6 +1,6 @@
 # StructuRL Bridge Maintenance: Leveraging Reinforcement Learning 
 ## Punna Chowdhurry, Jane Slagle, and Diana Krmzian
-# Tufts CS 138 - Final Project
+## Tufts CS 138 - Final Project
 
 
 Please note that we took inspiration from https://github.com/CivML-PolyMtl/InfrastructuresPlanner for this project.
