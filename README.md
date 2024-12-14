@@ -17,7 +17,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 ## Requirements
 - **Python**: 3.11.5
 
-## To Run and view results
+## To Run and View Results
 
 (1) Open the 'main.py' file
 - you may specify how many episodes you want to run the algorithms with, the default is set at 100,000
@@ -84,7 +84,7 @@ Implements a Deep SARSA agent that uses a neural network to approximate the Q va
 We use a basic Deep Q-Learning Algorithm (DQL) which is based on a simple neural network to help us make strong predictions on best actions to take in each situation. The algorithm uses a straightforward method to update its decisions over time, learning from the rewards it gets for each of the different actions. It also tries a mix of exploring new actions and sticking to what it already knows that works well(using an epsilon-greedy approach). This version helps us keep things simple, but focuses more on the basics to help the agent learn in an effective way in the InfraPlanner environment.
 
 **main.py**:
-By following the steps outlined in the "To run and view results" section above, we can run 'main.py' to obtain results for each of our three algorithms. For each algorithm the following results are obtained:
+By following the steps outlined in the "To Run and View Results" section above, we can run 'main.py' to obtain results for each of our three algorithms. For each algorithm the following results are obtained:
 
 - a plot showing the culmulative rewards over all episodes
 - a plot showing the average reward per episode for all episodes (both the original and smoothed version)
