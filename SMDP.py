@@ -89,7 +89,7 @@ class SMDP:
                 next_state, reward, done = self.env.step(act, action_duration)  #simulate taking step in env w/ action that has action duration just found
                 self.calc_q_val(act, reward, action_duration)                   #simulate updating the q val for taking that action
 
-                deterioration = np.mean(state) - np.mean(next_state)
+                deterioration = min(0, np.mean(next_state) - np.mean(state))
                 total_deterioration += deterioration 
                 total_reward += reward 
 
