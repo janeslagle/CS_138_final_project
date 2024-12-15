@@ -22,7 +22,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 ## To Run and View Results
 
 (1) Open the 'main.py' file
-- you may specify how many episodes you want to run the algorithms with, the default is set at 100,000
+- you may specify how many episodes you want to run the algorithms with, the default is set at 10,000
   
 (2) Uncomment the algorithm function you want to see results from in the 'if __name__ == "__main__":' block:
 - 'run_each_algor("SMDP", num_episodes)' for running the InfraPlanner environment with an SMDP algorithm
@@ -90,6 +90,7 @@ By following the steps outlined in the "To Run and View Results" section above, 
 
 - a plot showing the culmulative rewards over all episodes
 - a plot showing the average reward per episode for all episodes (both the original and smoothed version)
+- a plot showing the remaining budget for all episodes
 - the initial state condition of the bridge
 - the initial budget of the bridge
 - the average culmulative reward
