@@ -66,6 +66,7 @@ class SMDP:
         imulates running the SMDP algor with the env
         """
         rewards = []   #keep track of total reward so that can use it for results
+        budgets = []
 
         for eps in range(num_episodes):
             self.env.reset()              #reset env at start of each episode
@@ -87,5 +88,6 @@ class SMDP:
                 total_reward += reward 
 
             rewards.append(total_reward)
+            budgets.append(self.env.budget)
 
-        return rewards 
+        return rewards, budgets
