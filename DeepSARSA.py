@@ -13,9 +13,6 @@ class DeepSARSA:
    Deep SARSA integrates deep learning techniques to approximate the action-value function (Q-function). 
    Instead of using a simple table to store Q-values, Deep SARSA uses a neural network to handle complex and 
    continuous state spaces, making it suitable for tasks with large infinite state-action spaces.
-
-   In Deep SARSA, the neural network is trained to predict q-values for station-action pairs, with updates based 
-   on SARSA rule and TD learning with targets calculated using SARSA. 
    """
    def __init__(self, env, gamma=0.99, alpha=0.01, epsilon=0.1, epsilon_decay=0.9995, min_epsilon=0.01, hidden_size=128): #Increased hidden layer to work better with the complex env
        self.env = env
@@ -123,7 +120,7 @@ class DeepSARSA:
                next_state, reward, done = self.env.step(self.env.actions[action], action_duration=1)
                next_action = self.choose_action(next_state)
 
-               deterioration = np.mean(state) - np.mean(next_state)
+               deterioration = min(0, np.mean(next_state) - np.mean(state))
                total_deterioration += deterioration 
 
                #Adjust as needed to improve results. Increasing the min and max range will get more variations of rewards 
