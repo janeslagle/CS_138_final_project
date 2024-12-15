@@ -8,7 +8,6 @@ from InfraPlanner import InfraPlanner
 from SMDP import SMDP
 from DeepSARSA import DeepSARSA
 from DeepQLearning import DeepQLearning
-import sys
 
 def plot_rewards(rewards, budgets, which_algorithm):
     #get a moving average (rolling mean) of the rewards to smooth the rewards over episodes curve
