@@ -67,10 +67,13 @@ class SMDP:
         """
         rewards = []   #keep track of total reward so that can use it for results
         budgets = []
+        deteriorations = []
 
         for eps in range(num_episodes):
             self.env.reset()              #reset env at start of each episode
-            total_reward = 0     
+            state = self.env.reset()
+            total_reward = 0   
+            total_deterioration = 0  
             done = False
 
             while not done:
@@ -85,9 +88,13 @@ class SMDP:
 
                 next_state, reward, done = self.env.step(act, action_duration)  #simulate taking step in env w/ action that has action duration just found
                 self.calc_q_val(act, reward, action_duration)                   #simulate updating the q val for taking that action
+
+                deterioration = np.mean(state) - np.mean(next_state)
+                total_deterioration += deterioration 
                 total_reward += reward 
 
             rewards.append(total_reward)
             budgets.append(self.env.budget)
+            deteriorations.append(total_deterioration) 
 
-        return rewards, budgets
+        return rewards, budgets, deteriorations
