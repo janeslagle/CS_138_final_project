@@ -9,7 +9,7 @@ from SMDP import SMDP
 from DeepSARSA import DeepSARSA
 from DeepQLearning import DeepQLearning
 
-def plot_rewards(rewards, budgets, which_algorithm):
+def plot_rewards(rewards, budgets, deteriorations, which_algorithm):
     #get a moving average (rolling mean) of the rewards to smooth the rewards over episodes curve
     window_size = 100 
 
@@ -18,13 +18,13 @@ def plot_rewards(rewards, budgets, which_algorithm):
     else:
         smoothed_rewards = rewards
 
-    plt.subplot(3, 1, 1)
+    plt.subplot(2, 1, 1)
     plt.plot(np.cumsum(rewards), label='Cumulative Rewards', color = "deeppink")
     plt.xlabel('Episodes')
     plt.ylabel('Cumulative Rewards')
     plt.title(str(which_algorithm) + ' Cumulative Rewards Over Episodes')
 
-    plt.subplot(3, 1, 2)
+    plt.subplot(2, 1, 2)
     plt.plot(rewards, label='Rewards per Episode', color='lightskyblue', alpha=0.5)
 
     if len(smoothed_rewards) < len(rewards):
@@ -38,15 +38,25 @@ def plot_rewards(rewards, budgets, which_algorithm):
     plt.title(str(which_algorithm) + ' Rewards Per Episode (Original Results & Smoothed Average)')
     plt.legend()
 
-    plt.subplot(3, 1, 3)
+    plt.suptitle("Culmulative and Per-Epsiode Rewards for " + str(which_algorithm))
+    plt.tight_layout()
+    plt.show()
+
+    plt.subplot(2, 1, 1)
     plt.plot(budgets, label="Remaining Budget", color='seagreen')
     plt.xlabel("Episodes")
     plt.ylabel("Budget")
     plt.title(str(which_algorithm) + " Remaining Budget Over Episodes")
     plt.legend()
 
-    plt.suptitle("Culmulative and Per-Epsiode Rewards for " + str(which_algorithm))
+    plt.subplot(2, 1, 2)
+    plt.plot(deteriorations, label='Deterioration Per Episode', color='tomato')
+    plt.xlabel('Episodes')
+    plt.ylabel('Deterioration')
+    plt.title(f'{which_algorithm} Deterioration Over Episodes')
+    plt.legend()
 
+    plt.suptitle("Remaining Budget & Deterorioration Per Episode for " + str(which_algorithm))
     plt.tight_layout()
     plt.show()
 
@@ -98,10 +108,10 @@ def run_each_algor(which_algorithm, num_episodes):
         agent = DeepQLearning(env)
 
     #train agent on all episodes
-    rewards, budgets = agent.train(num_episodes=num_episodes)
+    rewards, budgets, deteriorations = agent.train(num_episodes=num_episodes)
 
     #get all results out from training on env w/ algor
-    plot_rewards(rewards, budgets, which_algorithm=which_algorithm)
+    plot_rewards(rewards, budgets, deteriorations, which_algorithm=which_algorithm)
 
     #now get all wanted performance metrics out
     agent_results(env, agent, rewards)
