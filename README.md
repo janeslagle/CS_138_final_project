@@ -16,6 +16,8 @@ We aim to explore how three different reinforcement learning algorithms can be a
 
 ## Requirements
 - **Python**: 3.11.5
+- **numpy**: 1.22.0
+- **matplotlib**: 3.6.3
 
 ## To Run and View Results
 
