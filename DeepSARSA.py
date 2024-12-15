@@ -110,16 +110,21 @@ class DeepSARSA:
        """
        rewards = []
        budgets = []
+       deteriorations = []
 
        for ep in range(num_episodes):
            state = self.env.reset()
            total_reward = 0
+           total_deterioration = 0
            done = False
            action = self.choose_action(state)
 
            while not done:
                next_state, reward, done = self.env.step(self.env.actions[action], action_duration=1)
                next_action = self.choose_action(next_state)
+
+               deterioration = np.mean(state) - np.mean(next_state)
+               total_deterioration += deterioration 
 
                #Adjust as needed to improve results. Increasing the min and max range will get more variations of rewards 
                #Compare results with (-10, 10) vs. (-20, 20)
@@ -140,7 +145,8 @@ class DeepSARSA:
 
            rewards.append(total_reward)
            budgets.append(self.env.budget)
+           deteriorations.append(total_deterioration) 
 
            self.epsilon = max(self.min_epsilon, self.epsilon * self.epsilon_decay)
 
-       return rewards, budgets
+       return rewards, budgets, deteriorations
