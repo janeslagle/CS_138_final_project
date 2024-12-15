@@ -54,7 +54,7 @@ class DeepQLearning:
                 next_state, reward, done = self.env.step(action)
                 self.update(state, action, reward, next_state, done)
 
-                deterioration = np.mean(state) - np.mean(next_state)
+                deterioration = min(0, np.mean(next_state) - np.mean(state))
                 total_deterioration += deterioration 
                 total_reward += reward
                 state = next_state
