@@ -69,7 +69,7 @@ def agent_results(env, agent, rewards):
 
     print("Total Cost Efficiency: " + str(np.round(cost_effic, 2)))
 
-def run_each_algor(which_algorithm="SMDP", num_episodes=1000):
+def run_each_algor(which_algorithm, num_episodes):
     print(str(which_algorithm) + " results:")
     print("")
 
