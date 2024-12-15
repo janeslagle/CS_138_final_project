@@ -109,6 +109,8 @@ class DeepSARSA:
        The agent will be trained using all the components of Deep SARSA 
        """
        rewards = []
+       budgets = []
+
        for ep in range(num_episodes):
            state = self.env.reset()
            total_reward = 0
@@ -137,6 +139,8 @@ class DeepSARSA:
                total_reward += reward
 
            rewards.append(total_reward)
+           budgets.append(self.env.budget)
+
            self.epsilon = max(self.min_epsilon, self.epsilon * self.epsilon_decay)
 
-       return rewards
+       return rewards, budgets
