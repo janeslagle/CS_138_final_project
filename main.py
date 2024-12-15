@@ -8,8 +8,9 @@ from InfraPlanner import InfraPlanner
 from SMDP import SMDP
 from DeepSARSA import DeepSARSA
 from DeepQLearning import DeepQLearning
+import sys
 
-def plot_rewards(rewards, which_algorithm):
+def plot_rewards(rewards, budgets, which_algorithm):
     #get a moving average (rolling mean) of the rewards to smooth the rewards over episodes curve
     window_size = 100 
 
@@ -18,13 +19,13 @@ def plot_rewards(rewards, which_algorithm):
     else:
         smoothed_rewards = rewards
 
-    plt.subplot(2, 1, 1)
+    plt.subplot(3, 1, 1)
     plt.plot(np.cumsum(rewards), label='Cumulative Rewards', color = "deeppink")
     plt.xlabel('Episodes')
     plt.ylabel('Cumulative Rewards')
     plt.title(str(which_algorithm) + ' Cumulative Rewards Over Episodes')
 
-    plt.subplot(2, 1, 2)
+    plt.subplot(3, 1, 2)
     plt.plot(rewards, label='Rewards per Episode', color='lightskyblue', alpha=0.5)
 
     if len(smoothed_rewards) < len(rewards):
@@ -36,6 +37,13 @@ def plot_rewards(rewards, which_algorithm):
     plt.xlabel('Episodes')
     plt.ylabel('Reward')
     plt.title(str(which_algorithm) + ' Rewards Per Episode (Original Results & Smoothed Average)')
+    plt.legend()
+
+    plt.subplot(3, 1, 3)
+    plt.plot(budgets, label="Remaining Budget", color='seagreen')
+    plt.xlabel("Episodes")
+    plt.ylabel("Budget")
+    plt.title(str(which_algorithm) + " Remaining Budget Over Episodes")
     plt.legend()
 
     plt.suptitle("Culmulative and Per-Epsiode Rewards for " + str(which_algorithm))
@@ -86,15 +94,15 @@ def run_each_algor(which_algorithm, num_episodes):
     if which_algorithm == "SMDP":
         agent = SMDP(env)
     elif which_algorithm == "DeepSARSA":
-        agent = DeepSARSA(env, gamma=0.99, alpha=0.1, epsilon=0.1)
+        agent = DeepSARSA(env)
     elif which_algorithm == "DeepQLearning":
         agent = DeepQLearning(env)
 
     #train agent on all episodes
-    rewards = agent.train(num_episodes=num_episodes)
+    rewards, budgets = agent.train(num_episodes=num_episodes)
 
     #get all results out from training on env w/ algor
-    plot_rewards(rewards, which_algorithm=which_algorithm)
+    plot_rewards(rewards, budgets, which_algorithm=which_algorithm)
 
     #now get all wanted performance metrics out
     agent_results(env, agent, rewards)
@@ -123,7 +131,7 @@ def run_each_algor(which_algorithm, num_episodes):
     print("Percentage of total budget leftover: " + str(budget_left) + "%")
 
 if __name__ == '__main__':
-    num_episodes = 100000   #want run all algor w/ the same number of episodes = 100000
+    num_episodes = 10000   #want run all algor w/ the same number of episodes = 10000
     
     run_each_algor("SMDP", num_episodes)
 
