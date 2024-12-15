@@ -40,6 +40,8 @@ class DeepQLearning:
 
     def train(self, num_episodes=500):
         rewards = []
+        budgets = []
+
         for _ in range(num_episodes):
             state = self.env.reset()
             total_reward = 0
@@ -53,5 +55,6 @@ class DeepQLearning:
                 state = next_state
 
             rewards.append(total_reward)
+            budgets.append(self.env.budget)
 
-        return rewards
+        return rewards, budgets
