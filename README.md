@@ -91,6 +91,7 @@ By following the steps outlined in the "To Run and View Results" section above, 
 - a plot showing the culmulative rewards over all episodes
 - a plot showing the average reward per episode for all episodes (both the original and smoothed version)
 - a plot showing the remaining budget for all episodes
+- a plot showing the deteoriation over episodes
 - the initial state condition of the bridge
 - the initial budget of the bridge
 - the average culmulative reward
