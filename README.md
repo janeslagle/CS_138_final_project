@@ -52,7 +52,7 @@ The budget is directly tied to each time step. If the agent uses up all of their
 When there is sufficient budget to take actions, we deduct the cost to take that action from the total budget. Depending on the action taken, the condition of the bridge will either improve or worsen.
 
 - 'do nothing' action: the state (condition) of the bridge worsens by 1% for the time step to simulate how in the real-world neglecting to maintain the bridge will lead to the state of the bridge getting worse over time 
-- 'mainteance' action: the state improves by 1% for the time step to simulate how in the real-world, if you reguarly maintain the bridge, it's condition will improve
+- 'mainteance' action: the state improves by 1% for the time step to simulate how in the real-world, if you reguarly maintain the bridge, it's condition will improve over time
 - 'replace' action: if you replace the bridge entirely then it will reset the bridge to have a perfect condition state
 
 **Reward Function**:
