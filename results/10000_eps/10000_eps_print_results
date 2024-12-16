@@ -4,31 +4,31 @@ SMDP results:
 
 Initial environment state (bridge condition): 40
 Initial budget: 100
-Average Cumulative Reward: 350.75
-Percentage of times took each action out of 337930 total times:
-Action do nothing 93.39% (315601 times)
-Action maintenance 3.34% (11271 times)
-Action replace 3.27% (11058 times)
-Total Cost Efficiency: 23.38
-Final environment state: 83
-Bridge Condition improved by 71.67%
-Final budget: 85
-Percentage of total budget spent: 15.0%
-Percentage of total budget leftover: 85.0%
+Average Cumulative Reward: 351.75
+Percentage of times took each action out of 337757 total times:
+Action do nothing 92.84% (313559 times)
+Action maintenance 3.37% (11375 times)
+Action replace 3.8% (12823 times)
+Total Cost Efficiency: 16.75
+Final environment state: 79
+Bridge Condition improved by 65.0%
+Final budget: 79
+Percentage of total budget spent: 21.0%
+Percentage of total budget leftover: 79.0%
 
 
 DeepSARSA results:
 
 Initial environment state (bridge condition): 40
 Initial budget: 100
-Average Cumulative Reward: 266.13
+Average Cumulative Reward: 274.38
 Percentage of times took each action out of 1010000 total times:
-Action do nothing 87.08% (879485 times)
-Action maintenance 5.2% (52519 times)
-Action replace 7.72% (77996 times)
-Total Cost Efficiency: 53.23
-Final environment state: 57
-Bridge Condition improved by 28.33%
+Action do nothing 88.78% (896656 times)
+Action maintenance 4.27% (43119 times)
+Action replace 6.95% (70225 times)
+Total Cost Efficiency: 54.88
+Final environment state: 74
+Bridge Condition improved by 56.67%
 Final budget: 95
 Percentage of total budget spent: 5.0%
 Percentage of total budget leftover: 95.0%
@@ -38,14 +38,14 @@ DeepQLearning results:
 
 Initial environment state (bridge condition): 40
 Initial budget: 100
-Average Cumulative Reward: 725.12
+Average Cumulative Reward: 726.5
 Percentage of times took each action out of 1000000 total times:
-Action do nothing 93.3% (932973 times)
-Action maintenance 3.36% (33629 times)
-Action replace 3.34% (33398 times)
-Total Cost Efficiency: 34.53
-Final environment state: 96
-Bridge Condition improved by 93.33%
-Final budget: 79
-Percentage of total budget spent: 21.0%
-Percentage of total budget leftover: 79.0%
+Action do nothing 93.3% (933000 times)
+Action maintenance 3.35% (33522 times)
+Action replace 3.35% (33478 times)
+Total Cost Efficiency: 25.95
+Final environment state: 90
+Bridge Condition improved by 83.33%
+Final budget: 72
+Percentage of total budget spent: 28.000000000000004%
+Percentage of total budget leftover: 72.0%
