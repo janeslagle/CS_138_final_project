@@ -15,7 +15,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 (3) Deep Q-Learning
 
 ## Requirements
-- **Python**: 3.11.5
+- **python**: 3.11.5
 - **numpy**: 1.22.0
 - **matplotlib**: 3.6.3
 
