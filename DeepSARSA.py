@@ -101,7 +101,7 @@ class DeepSARSA:
        self.all_acts_taken.append(self.env.actions[action])   
        return action
 
-   def train(self, num_episodes=500):
+   def train(self, num_episodes):
        """
        The agent will be trained using all the components of Deep SARSA 
        """
