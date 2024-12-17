@@ -59,7 +59,7 @@ class InfraPlanner:
                 next_state = np.clip(self.state * (1.01 ** time_step_length), 0, 100)
             elif action == 'replace':
                 #have replaced the bridge so its in perfect condition
-                next_state = self.state * 100
+                next_state = np.ones_like(self.state) * 100
 
             #calc reward based on prev state + new state + scale it by the action duration
             reward += self.calculate_reward(next_state, prev_condition) * time_step_length
