@@ -38,7 +38,7 @@ class DeepQLearning:
         self.weights[:, action_idx] += self.alpha * td_error * state
         self.biases[action_idx] += self.alpha * td_error
 
-    def train(self, num_episodes=500):
+    def train(self, num_episodes):
         rewards = []
         budgets = []
         deteriorations = []
