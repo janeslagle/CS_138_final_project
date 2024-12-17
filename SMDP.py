@@ -61,7 +61,7 @@ class SMDP:
         #on action should discount its q val
         self.q_vals[act] += self.alpha * (reward + (self.gamma ** action_duration) * (np.max(self.q_vals) - self.q_vals[act]))
 
-    def train(self, num_episodes=500):
+    def train(self, num_episodes):
         """
         imulates running the SMDP algor with the env
         """
