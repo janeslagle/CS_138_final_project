@@ -55,7 +55,7 @@ When there is sufficient budget to take actions, we deduct the cost to take that
 
 - 'do nothing' action: the state (condition) of the bridge worsens by 1% for the time step to simulate how in the real-world neglecting to maintain the bridge will lead to the state of the bridge getting worse over time 
 - 'mainteance' action: the state improves by 1% for the time step to simulate how in the real-world, if you reguarly maintain the bridge, it's condition will improve over time
-- 'replace' action: if you replace the bridge entirely then it will reset the bridge to have a perfect condition state
+- 'replace' action: if you replace the bridge entirely then it will reset the bridge to have a perfect condition state of 100
 
 **Reward Function**:
 We calculate reward based on if the bridge is improving from previous conditions and also based on how well the agent is maintaining the available budget.
@@ -88,10 +88,8 @@ We use a basic Deep Q-Learning Algorithm (DQL) which is based on a simple neural
 **main.py**:
 By following the steps outlined in the "To Run and View Results" section above, we can run 'main.py' to obtain results for each of our three algorithms. For each algorithm the following results are obtained:
 
-- a plot showing the culmulative rewards over all episodes
-- a plot showing the average reward per episode for all episodes (both the original and smoothed version)
-- a plot showing the remaining budget for all episodes
-- a plot showing the deteoriation over episodes
+- a plot showing (1) the culmulative rewards over all episodes and (2) the average reward per episode for all episodes (both the original and smoothed version)
+- a plot showing (1) the remaining budget for all episodes and (2) the deteoriation over episodes
 - the initial state condition of the bridge
 - the initial budget of the bridge
 - the average culmulative reward
