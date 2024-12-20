@@ -29,7 +29,7 @@ We aim to explore how three different reinforcement learning algorithms can be a
 - 'run_each_algor("DeepSARSA", num_episodes)' for running the InfraPlanner environment with a Deep SARSA algorithm
 - 'run_each_algor("DeepQLearning", num_episodes)' for running the InfraPlanner environment with a Deep Q-Learning algorithm
 
-(3) Run 'main.py' to see plotting results and also print statements providing various metrics for each algorithm. The results from each algorithm are clearly labelled if you decide to run all three algorithms at once.
+(3) Run 'main.py' to see plotting results and also print statements providing various metrics for each algorithm. The results from each algorithm are clearly labelled if you decide to run all three algorithms at once
 
 ## Code Overview
 
