@@ -52,7 +52,7 @@ The associated cost of each action is taken out of the budget.
 
 **Step Function**:
 If running the SMDP algorithm, we employ variable time step lengths for each action. For non-SMDP algorithms, each action takes one time step as per usual.
-The budget is directly tied to each time step. If the agent uses up all of their budget, then a pretty big penalty is applied to the reward, represented as -10.
+The budget is directly tied to each time step. If the agent uses up all of the available budget, then a pretty big penalty is applied to the reward, represented as -10.
 When there is sufficient budget to take actions, we deduct the cost to take that action from the total budget. Depending on the action taken, the condition of the bridge will either improve or worsen.
 
 - 'do nothing' action: the state (condition) of the bridge worsens by 1% for the time step to simulate how in the real-world neglecting to maintain the bridge will lead to the state of the bridge getting worse over time 
@@ -71,7 +71,7 @@ We consider the following factors when calculating reward:
     
 **SMDP.py**:
 Q-learning based SMDP algorithm representing an agent that is able to interact with the InfraPlanner environment.
-It employs an epsilon-greedy policy for action selection and updates Q values by scaling them by the variable action durations since it is SMDP. It handles all training for running through the environment with an SMDP algrorithm.
+It employs an epsilon-greedy policy for action selection and updates Q values by scaling them by the variable action durations since it is SMDP. It handles all training for running through the environment with an SMDP algorithm.
 
 **DeepSARSA.py**:
 Implements a Deep SARSA agent that uses a neural network to approximate the Q values. It uses an epsilon-greedy approach for action selection and also incorporates weights. This integration of deep learning allows the agent to handle complex decision-making tasks effectively.
@@ -96,6 +96,6 @@ By following the steps outlined in the "To Run and View Results" section above, 
 - the initial budget of the bridge
 - the average culmulative reward
 - the percentage of times each action out of the three possible actions was taken out of the total number of actions taken
-- the cost efficiency
+- the cost efficiency (ratio of the average cumulative reward to the total cost spent)
 - the final environment state with the percentage of how much the agent either improved or deteroriated the bridge
 - the final budget with the percentage of the total budget used and the percentage of the total budget leftover
