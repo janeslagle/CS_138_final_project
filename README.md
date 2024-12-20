@@ -33,6 +33,8 @@ We aim to explore how three different reinforcement learning algorithms can be a
 
 ## Code Overview
 
+All of the code for our project is hosted on the following GitHub repo: https://github.com/janeslagle/CS_138_final_project/tree/main
+
 **InfraPlanner.py**:
 a simulation environment for bridge infrastrucutre maintenance on one bridge over a 100 year period. Budget constraints are incorporated with each action having a fixed associated cost. When determining the reward, how well the condition of the bridge is improving over time as well as how well the budget is being managed are both considered.
 
